@@ -1,3 +1,4 @@
+mod instructionSet;
 
 #[derive(Copy, Clone, Debug)]
 struct Register {
@@ -9,31 +10,16 @@ struct Register {
 
 
 fn main() {
-    let mut GR: [Register; 8] = [Register { data: 0 }; 8];
-    let mut MEM: [i16; 65536] = [0; 8];
+    let mut gr: [Register; 8] = [Register { data: 0 }; 8];
+    let mut mem: [i16; 65536] = [0; 65536];
 
-    let mut a = 10;
-    let b = 42;
-    CASL2_LD(&mut a, &b);
-    println!("a = {}", a); // Output: a = 42
+    let mut a = Register { data: 11 };
+    let b = Register { data: 42 };
+    instructionSet::casl2_ld(&mut a, &b);
+    println!("a = {}", a.data); // Output: a = 42
 }
 
 
 
-// LD Load opererater
-// LD r1 r2
-// CASL2_LD(&mut a, &b);
-fn CASL2_LD<T: Copy>(a: &mut T, b: &T) {
-    *a = *b;
-}
-
-
-
-// ST Store opererater
-// ST r, adr [,x]
-// CASL2_LD(&mut a, &b);
-fn CASL2_ST<T: Copy>(a: &mut T, b: &T) {
-    *a = *b;
-}
 
 
